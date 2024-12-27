@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Admin\Resources\ArtikelResource\Pages;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use App\Filament\Admin\Resources\ArtikelResource\RelationManagers;
+use Filament\Forms\Components\Grid;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 
 class ArtikelResource extends Resource
@@ -26,22 +27,26 @@ class ArtikelResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Hidden::make('user_id')
-                    ->default(Auth::user()->id),
-                Forms\Components\TextInput::make('judul')
-                ->required()
-                ->maxLength(255)
-                ->unique(ignoreRecord: true),
-                SpatieMediaLibraryFileUpload::make('artikel-thumbnail')
-                    ->collection('artikel-thumbnail')
-                    ->rules(['required'])
-                    ->image()
-                    ->required()
-                    ->maxFiles(1)
-                    ->maxSize(1024),
-                Forms\Components\RichEditor::make('konten')
-                    ->required()
-                    ->rules(['required']),
+                Grid::make()
+                    ->columns(1)
+                    ->schema([
+                        Forms\Components\Hidden::make('user_id')
+                            ->default(Auth::user()->id),
+                        Forms\Components\TextInput::make('judul')
+                        ->required()
+                        ->maxLength(255)
+                        ->unique(ignoreRecord: true),
+                        SpatieMediaLibraryFileUpload::make('artikel-thumbnail')
+                            ->collection('artikel-thumbnail')
+                            ->rules(['required'])
+                            ->image()
+                            ->required()
+                            ->maxFiles(1)
+                            ->maxSize(1024),
+                        Forms\Components\RichEditor::make('konten')
+                            ->required()
+                            ->rules(['required']),
+                    ])
             ]);
     }
 
