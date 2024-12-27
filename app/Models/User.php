@@ -26,6 +26,7 @@ class User extends Authenticatable implements HasAvatar
         'email',
         'password',
         'avatar_url',
+        'custom_fields',
     ];
 
     public function getFilamentAvatarUrl(): ?string
