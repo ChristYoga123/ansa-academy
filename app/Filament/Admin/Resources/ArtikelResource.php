@@ -36,7 +36,9 @@ class ArtikelResource extends Resource
                     ->collection('artikel-thumbnail')
                     ->rules(['required'])
                     ->image()
-                    ->required(),
+                    ->required()
+                    ->maxFiles(1)
+                    ->maxSize(1024),
                 Forms\Components\RichEditor::make('konten')
                     ->required()
                     ->rules(['required']),
@@ -68,6 +70,7 @@ class ArtikelResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
