@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Filament\Admin\Resources\ArtikelResource;
 use App\Filament\Admin\Resources\EbookResource;
+use App\Filament\Admin\Resources\LokerMentorResource;
 use App\Filament\Admin\Resources\LombaResource;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
@@ -103,9 +104,10 @@ class AdminPanelProvider extends PanelProvider
                             ...ArtikelResource::getNavigationItems(),
                             ...EbookResource::getNavigationItems(),
                             ...LombaResource::getNavigationItems(),
-                            // ...PageResource::getNavigationItems(),
-                            // ...CategoryResource::getNavigationItems(),
-                            // ...HomePageSettings::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make('Karir')
+                        ->items([
+                            ...LokerMentorResource::getNavigationItems(),
                         ]),
                     NavigationGroup::make('Master Data')
                         ->items([

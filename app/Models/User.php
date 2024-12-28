@@ -11,12 +11,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements HasAvatar, FilamentUser
+class User extends Authenticatable implements HasAvatar, FilamentUser, HasMedia
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasRoles, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -68,5 +70,13 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
         }elseif($panel->getId() === 'mentee') {
             return $this->hasRole('mentee');
         }
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('mentor-cv')
+            ->singleFile();
+        $this->addMediaCollection('mentor-poster')
+            ->singleFile();
     }
 }
