@@ -2,27 +2,28 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Admin\Resources\LombaResource\Pages;
-use App\Filament\Admin\Resources\LombaResource\RelationManagers;
-use App\Models\Lomba;
 use Filament\Forms;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\User;
 use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use App\Models\Event;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Grid;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Admin\Resources\EventResource\Pages;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use App\Filament\Admin\Resources\EventResource\RelationManagers;
 
-class LombaResource extends Resource
+class EventResource extends Resource
 {
-    protected static ?string $model = Lomba::class;
+    protected static ?string $model = Event::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'Lomba';
+    protected static ?string $navigationLabel = 'Event';
 
     public static function form(Form $form): Form
     {
@@ -34,20 +35,27 @@ class LombaResource extends Resource
                         Forms\Components\TextInput::make('judul')
                             ->required()
                             ->maxLength(191),
-                        SpatieMediaLibraryFileUpload::make('lomba-thumbnail')
-                            ->collection('lomba-thumbnail')
-                            ->rules(['image', 'max:1024', 'mimes:png,jpg,jpeg'])
-                            ->image()
+                        Forms\Components\Select::make('mentors')
+                            ->relationship('mentors', 'name', fn(Builder $query) => $query->whereHas('roles', fn($query) => $query->where('name', 'mentor')))
+                            ->required()
+                            ->multiple()
+                            ->searchable()
+                            ->preload(),
+                        SpatieMediaLibraryFileUpload::make('event-thumbnail')
                             ->required()
                             ->maxFiles(1)
-                            ->maxSize(1024),
-                        Forms\Components\TextInput::make('penyelenggara')
+                            ->maxSize(1024)
+                            ->collection('event-thumbnail')
+                            ->image(),
+                        Forms\Components\TextInput::make('harga')
                             ->required()
-                            ->maxLength(191),
+                            ->prefix('Rp')
+                            ->suffix('.00')
+                            ->numeric(),
                         Forms\Components\RichEditor::make('deskripsi')
                             ->required()
                             ->columnSpanFull(),
-                        Grid::make()
+                        Forms\Components\Grid::make()
                             ->columns(2)
                             ->schema([
                                 Forms\Components\DateTimePicker::make('waktu_open_registrasi')
@@ -57,9 +65,11 @@ class LombaResource extends Resource
                                     ->label('Close Registrasi')
                                     ->required(),
                             ]),
-                        Forms\Components\TextInput::make('link_pendaftaran')
+                        Forms\Components\DateTimePicker::make('waktu_pelaksanaan')
+                            ->required(),
+                        Forms\Components\TextInput::make('link_meet')
                             ->required()
-                            ->columnSpanFull(),
+                            ->maxLength(191),
                     ])
             ]);
     }
@@ -70,19 +80,11 @@ class LombaResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('judul')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('penyelenggara')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('waktu_open_registrasi')
-                    ->label('Open Registrasi')
-                    ->dateTime()
+                Tables\Columns\TextColumn::make('harga')
+                    ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('waktu_close_registrasi')
-                    ->label('Close Registrasi')
-                    ->dateTime()
-                    ->sortable(),
-                SpatieMediaLibraryImageColumn::make('lomba-thumbnail')
-                    ->label('Thumbnail')
-                    ->collection('lomba-thumbnail'),
+                SpatieMediaLibraryImageColumn::make('event-thumbnail')
+                    ->collection('event-thumbnail'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -98,7 +100,6 @@ class LombaResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -117,10 +118,10 @@ class LombaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListLombas::route('/'),
-            'create' => Pages\CreateLomba::route('/create'),
-            'view' => Pages\ViewLomba::route('/{record}'),
-            'edit' => Pages\EditLomba::route('/{record}/edit'),
+            'index' => Pages\ListEvents::route('/'),
+            'create' => Pages\CreateEvent::route('/create'),
+            'view' => Pages\ViewEvent::route('/{record}'),
+            'edit' => Pages\EditEvent::route('/{record}/edit'),
         ];
     }
 }

@@ -73,6 +73,11 @@ class User extends Authenticatable implements HasAvatar, FilamentUser, HasMedia
         }
     }
 
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'event_mentors', 'mentor_id', 'event_id')->withPivot('id');
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('mentor-cv')
