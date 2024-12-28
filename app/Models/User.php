@@ -58,6 +58,7 @@ class User extends Authenticatable implements HasAvatar, FilamentUser, HasMedia
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'custom_fields' => 'json',
         ];
     }
 

@@ -6,6 +6,7 @@ use App\Filament\Admin\Resources\ArtikelResource;
 use App\Filament\Admin\Resources\EbookResource;
 use App\Filament\Admin\Resources\LokerMentorResource;
 use App\Filament\Admin\Resources\LombaResource;
+use App\Filament\Admin\Resources\MentorResource;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -111,6 +112,7 @@ class AdminPanelProvider extends PanelProvider
                         ]),
                     NavigationGroup::make('Master Data')
                         ->items([
+                            ...MentorResource::getNavigationItems(),
                             // ...PageResource::getNavigationItems(),
                             // ...CategoryResource::getNavigationItems(),
                             // ...HomePageSettings::getNavigationItems(),

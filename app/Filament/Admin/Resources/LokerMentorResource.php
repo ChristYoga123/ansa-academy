@@ -143,7 +143,7 @@ class LokerMentorResource extends Resource
                                 'email' => $lokerMentor->email,
                             ], [
                                 'password' => bcrypt('password'),
-                                'custom_fields' => json_encode([
+                                'custom_fields' => [
                                     'no_hp' => $lokerMentor->no_hp,
                                     'universitas' => $lokerMentor->universitas,
                                     'semester' => $lokerMentor->semester,
@@ -151,7 +151,7 @@ class LokerMentorResource extends Resource
                                     'mahasiswa_berprestrasi' => $lokerMentor->mahasiswa_berprestrasi,
                                     'pencapaian' => $lokerMentor->pencapaian,
                                     'drive_portofolio' => $lokerMentor->drive_portofolio,
-                                ])
+                                ]
                             ]);
 
                             $user->assignRole('mentor');
