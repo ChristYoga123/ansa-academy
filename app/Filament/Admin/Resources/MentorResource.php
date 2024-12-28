@@ -95,7 +95,8 @@ class MentorResource extends Resource
                     ->url(fn(User $user) => $user->custom_fields['drive_portofolio'])
                     ->openUrlInNewTab(),
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->label('Edit Poster'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
