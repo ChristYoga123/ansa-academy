@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Filament\Admin\Resources\ArtikelResource;
 use App\Filament\Admin\Resources\EbookResource;
+use App\Filament\Admin\Resources\LombaResource;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -101,6 +102,7 @@ class AdminPanelProvider extends PanelProvider
                             ...Dashboard::getNavigationItems(),
                             ...ArtikelResource::getNavigationItems(),
                             ...EbookResource::getNavigationItems(),
+                            ...LombaResource::getNavigationItems(),
                             // ...PageResource::getNavigationItems(),
                             // ...CategoryResource::getNavigationItems(),
                             // ...HomePageSettings::getNavigationItems(),

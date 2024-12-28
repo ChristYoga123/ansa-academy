@@ -92,6 +92,7 @@ class EbookResource extends Resource
                     ->media(fn(Ebook $ebook) => $ebook->getFirstMediaUrl('ebook-file')),
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
