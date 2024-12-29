@@ -75,7 +75,6 @@ class MentorPanelProvider extends PanelProvider
                     ->visible(function (): bool {
                         return auth()->user()->can('page_EditProfilePage');
                     }),
-            ])
-            ->spa();
+            ]);
     }
 }

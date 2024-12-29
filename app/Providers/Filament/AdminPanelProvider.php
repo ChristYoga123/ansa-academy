@@ -143,7 +143,6 @@ class AdminPanelProvider extends PanelProvider
                         ]),
 
                 ]);
-            })
-            ->spa();
+            });
     }
 }
