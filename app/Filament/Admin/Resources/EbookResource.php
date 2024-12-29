@@ -32,30 +32,30 @@ class EbookResource extends Resource
                     ->columns(1)
                     ->schema([
                         Forms\Components\TextInput::make('judul')
-                    ->required()
-                    ->unique(ignoreRecord: true)
-                    ->maxLength(255),
-                    SpatieMediaLibraryFileUpload::make('ebook-thumbnail')
-                        ->collection('ebook-thumbnail')
-                        ->rules(['image', 'max:1024', 'mimes:png,jpg,jpeg'])
-                        ->image()
                         ->required()
-                        ->maxFiles(1)
-                        ->maxSize(1024),
-                    SpatieMediaLibraryFileUpload::make('ebook-file')
-                        ->collection('ebook-file')
-                        ->rules(['file', 'max:10240', 'mimes:pdf'])
-                        ->required()
-                        ->maxFiles(1)
-                        ->maxSize(10240),
-                    Forms\Components\TextInput::make('harga')
-                        ->required()
-                        ->prefix('Rp')
-                        ->suffix('.00')
-                        ->numeric(),
-                    Forms\Components\RichEditor::make('deskripsi')
-                        ->required()
-                        ->columnSpanFull(),
+                        ->unique(ignoreRecord: true)
+                        ->maxLength(255),
+                        SpatieMediaLibraryFileUpload::make('ebook-thumbnail')
+                            ->collection('ebook-thumbnail')
+                            ->rules(['image', 'max:1024', 'mimes:png,jpg,jpeg'])
+                            ->image()
+                            ->required()
+                            ->maxFiles(1)
+                            ->maxSize(1024),
+                        SpatieMediaLibraryFileUpload::make('ebook-file')
+                            ->collection('ebook-file')
+                            ->rules(['file', 'max:10240', 'mimes:pdf'])
+                            ->required()
+                            ->maxFiles(1)
+                            ->maxSize(10240),
+                        Forms\Components\TextInput::make('harga')
+                            ->required()
+                            ->prefix('Rp')
+                            ->suffix('.00')
+                            ->numeric(),
+                        Forms\Components\RichEditor::make('deskripsi')
+                            ->required()
+                            ->columnSpanFull(),
                     ])
             ]);
     }

@@ -34,6 +34,7 @@ class EventResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('judul')
                             ->required()
+                            ->unique(ignoreRecord: true)
                             ->maxLength(191),
                         Forms\Components\Select::make('mentors')
                             ->relationship('mentors', 'name', fn(Builder $query) => $query->whereHas('roles', fn($query) => $query->where('name', 'mentor')))

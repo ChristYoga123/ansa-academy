@@ -33,6 +33,7 @@ class LombaResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('judul')
                             ->required()
+                            ->unique(ignoreRecord: true)
                             ->maxLength(191),
                         SpatieMediaLibraryFileUpload::make('lomba-thumbnail')
                             ->collection('lomba-thumbnail')

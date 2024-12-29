@@ -34,9 +34,10 @@ class ArtikelResource extends Resource
                         Forms\Components\Hidden::make('user_id')
                             ->default(Auth::user()->id),
                         Forms\Components\TextInput::make('judul')
-                        ->required()
-                        ->maxLength(255)
-                        ->unique(ignoreRecord: true),
+                            ->required()
+                            ->unique(ignoreRecord: true)
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: true),
                         SpatieMediaLibraryFileUpload::make('artikel-thumbnail')
                             ->collection('artikel-thumbnail')
                             ->rules(['required'])
