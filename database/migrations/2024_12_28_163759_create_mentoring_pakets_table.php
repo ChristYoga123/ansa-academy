@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('mentoring_id')->constrained()->cascadeOnDelete();
             $table->unsignedInteger('jumlah_pertemuan');
             $table->string('label');
+            $table->enum('jenis', ['Lanjutan', 'Pemula']);
+            $table->unsignedBigInteger('harga');
             $table->timestamps();
         });
     }

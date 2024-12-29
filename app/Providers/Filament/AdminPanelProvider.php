@@ -21,6 +21,7 @@ use App\Filament\Admin\Resources\MenteeResource;
 use App\Filament\Admin\Resources\MentorResource;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use App\Filament\Admin\Resources\ArtikelResource;
+use App\Filament\Admin\Resources\MentoringResource;
 use App\Filament\Admin\Resources\LokerMentorResource;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use FilipFonal\FilamentLogManager\FilamentLogManager;
@@ -109,6 +110,7 @@ class AdminPanelProvider extends PanelProvider
                             ...EbookResource::getNavigationItems(),
                             ...LombaResource::getNavigationItems(),
                             ...EventResource::getNavigationItems(),
+                            ...MentoringResource::getNavigationItems(),
                         ]),
                     NavigationGroup::make('Karir')
                         ->items([
