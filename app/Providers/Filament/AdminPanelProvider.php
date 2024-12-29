@@ -14,13 +14,13 @@ use Filament\Navigation\NavigationGroup;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Navigation\NavigationBuilder;
 use App\Filament\Admin\Resources\EbookResource;
+use App\Filament\Admin\Resources\EventResource;
 use App\Filament\Admin\Resources\LombaResource;
 use Illuminate\Session\Middleware\StartSession;
 use App\Filament\Admin\Resources\MenteeResource;
 use App\Filament\Admin\Resources\MentorResource;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use App\Filament\Admin\Resources\ArtikelResource;
-use App\Filament\Admin\Resources\EventResource;
 use App\Filament\Admin\Resources\LokerMentorResource;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use FilipFonal\FilamentLogManager\FilamentLogManager;
@@ -31,6 +31,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Filament\Admin\Resources\KategoriMentoringResource;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
@@ -117,6 +118,7 @@ class AdminPanelProvider extends PanelProvider
                         ->items([
                             ...MentorResource::getNavigationItems(),
                             ...MenteeResource::getNavigationItems(),
+                            ...KategoriMentoringResource::getNavigationItems(),
                             // ...PageResource::getNavigationItems(),
                             // ...CategoryResource::getNavigationItems(),
                             // ...HomePageSettings::getNavigationItems(),

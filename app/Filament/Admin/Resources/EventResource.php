@@ -80,8 +80,12 @@ class EventResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('judul')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('waktu_pelaksanaan')
+                    ->dateTime()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('harga')
                     ->numeric()
+                    ->money('IDR')
                     ->sortable(),
                 SpatieMediaLibraryImageColumn::make('event-thumbnail')
                     ->collection('event-thumbnail'),
