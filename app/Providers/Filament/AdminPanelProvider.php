@@ -29,6 +29,7 @@ use GeoSot\FilamentEnvEditor\FilamentEnvEditorPlugin;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Admin\Resources\ProdukDigitalResource;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -107,7 +108,8 @@ class AdminPanelProvider extends PanelProvider
                         ->items([
                             ...Dashboard::getNavigationItems(),
                             ...ArtikelResource::getNavigationItems(),
-                            ...EbookResource::getNavigationItems(),
+                            // ...EbookResource::getNavigationItems(),
+                            ...ProdukDigitalResource::getNavigationItems(),
                             ...LombaResource::getNavigationItems(),
                             ...EventResource::getNavigationItems(),
                             ...MentoringResource::getNavigationItems(),
