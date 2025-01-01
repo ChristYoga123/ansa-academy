@@ -9,6 +9,8 @@ use Filament\Forms;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Wizard;
+use Filament\Forms\Components\Wizard\Step;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -26,83 +28,85 @@ class MentoringResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $mentoringDetail = Step::make('Detail Mentoring')
+            ->schema([
+                Forms\Components\Select::make('kategori_mentoring_id')
+                    ->label('Kategori Mentoring')
+                    ->required()
+                    ->relationship('kategori', 'nama')
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('nama')
+                            ->required()
+                            ->maxLength(191),
+                    ]),
+                Forms\Components\TextInput::make('judul')
+                    ->unique(ignoreRecord: true)
+                    ->required()
+                    ->maxLength(191),
+                SpatieMediaLibraryFileUpload::make('mentoring-thumbnail')
+                    ->collection('mentoring-thumbnail')
+                    ->image()
+                    ->required()
+                    ->maxFiles(1)
+                    ->maxSize(1024),
+                Forms\Components\Select::make('mentors')
+                    ->label('Mentor')
+                    ->relationship('mentors', 'name', fn(Builder $query) => $query->whereHas('roles', fn($query) => $query->where('name', 'mentor')))
+                    ->multiple()
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+                Forms\Components\Repeater::make('bidangs')
+                    ->label('Bidang Mentoring')
+                    ->relationship()
+                    ->required()
+                    ->schema([
+                        Forms\Components\TextInput::make('nama')
+                            ->required()
+                            ->maxLength(191),
+                    ]),
+                Forms\Components\RichEditor::make('deskripsi')
+                    ->required()
+                    ->columnSpanFull(),
+            ]);
+
+        $mentoringPricing = Step::make('Pricing Mentoring')
+            ->schema([
+                Forms\Components\Repeater::make('pakets')
+                    ->relationship()
+                    ->label('Paket Mentoring')
+                    ->required()
+                    ->schema([
+                Forms\Components\Select::make('jenis')
+                    ->options([
+                        'Lanjutan' => 'Lanjutan',
+                        'Pemula' => 'Pemula',
+                    ])
+                    ->required(),
+                Forms\Components\TextInput::make('label')
+                    ->required()
+                    ->maxLength(191),
+                Forms\Components\TextInput::make('jumlah_pertemuan')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('harga')
+                    ->required()
+                    ->numeric()
+                    ->prefix('Rp')
+                    ->suffix('.00'),
+                ]),
+            ]);
         return $form
             ->schema([
                 Grid::make()
                     ->columns(1)
                     ->schema([
-                        Fieldset::make('data_mentoring')
-                            ->columns(1)
-                            ->label('Data Mentoring')
-                            ->schema([
-                                Forms\Components\Select::make('kategori_mentoring_id')
-                                    ->label('Kategori Mentoring')
-                                    ->required()
-                                    ->relationship('kategori', 'nama')
-                                    ->createOptionForm([
-                                        Forms\Components\TextInput::make('nama')
-                                            ->required()
-                                            ->maxLength(191),
-                                    ]),
-                                Forms\Components\TextInput::make('judul')
-                                    ->unique(ignoreRecord: true)
-                                    ->required()
-                                    ->maxLength(191),
-                                SpatieMediaLibraryFileUpload::make('mentoring-thumbnail')
-                                    ->collection('mentoring-thumbnail')
-                                    ->image()
-                                    ->required()
-                                    ->maxFiles(1)
-                                    ->maxSize(1024),
-                                Forms\Components\Select::make('mentors')
-                                    ->label('Mentor')
-                                    ->relationship('mentors', 'name', fn(Builder $query) => $query->whereHas('roles', fn($query) => $query->where('name', 'mentor')))
-                                    ->multiple()
-                                    ->searchable()
-                                    ->preload()
-                                    ->required(),
-                                Forms\Components\Repeater::make('bidangs')
-                                    ->label('Bidang Mentoring')
-                                    ->relationship()
-                                    ->required()
-                                    ->schema([
-                                        Forms\Components\TextInput::make('nama')
-                                            ->required()
-                                            ->maxLength(191),
-                                    ]),
-                                Forms\Components\RichEditor::make('deskripsi')
-                                    ->required()
-                                    ->columnSpanFull(),
-                            ]),
-                        
-                        Fieldset::make('data_pricing')
-                            ->label('Data Pricing')
-                            ->columns(1)
-                            ->schema([
-                                Forms\Components\Repeater::make('pakets')
-                                    ->relationship()
-                                    ->label('Paket Mentoring')
-                                    ->required()
-                                    ->schema([
-                                        Forms\Components\Select::make('jenis')
-                                            ->options([
-                                                'Lanjutan' => 'Lanjutan',
-                                                'Pemula' => 'Pemula',
-                                            ])
-                                            ->required(),
-                                        Forms\Components\TextInput::make('label')
-                                            ->required()
-                                            ->maxLength(191),
-                                        Forms\Components\TextInput::make('jumlah_pertemuan')
-                                            ->required()
-                                            ->numeric(),
-                                        Forms\Components\TextInput::make('harga')
-                                            ->required()
-                                            ->numeric()
-                                            ->prefix('Rp')
-                                            ->suffix('.00'),
-                                    ]),
+                        Wizard::make(['Data Mentoring', 'Pricing Mentoring'])
+                            ->steps([
+                                $mentoringDetail,
+                                $mentoringPricing,
                             ])
+                            ->skippable(fn(string $operation) => $operation === 'edit'),
                     ])
             ]);
     }
