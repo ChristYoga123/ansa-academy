@@ -31,6 +31,7 @@ class User extends Authenticatable implements HasAvatar, FilamentUser, HasMedia
         'password',
         'avatar_url',
         'custom_fields',
+        'referal_code',
     ];
 
     public function getFilamentAvatarUrl(): ?string
