@@ -31,6 +31,7 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('fe/css/style.css') }}" rel="stylesheet">
+    @stack('styles')
 </head>
 
 <body>
@@ -66,6 +67,7 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('fe/js/main.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>
