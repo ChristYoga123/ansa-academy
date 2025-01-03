@@ -32,7 +32,7 @@ class MenteePanelProvider extends PanelProvider
             ->registration()
             ->passwordReset()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => "#06BBCC",
             ])
             ->discoverResources(in: app_path('Filament/Mentee/Resources'), for: 'App\\Filament\\Mentee\\Resources')
             ->discoverPages(in: app_path('Filament/Mentee/Pages'), for: 'App\\Filament\\Mentee\\Pages')
