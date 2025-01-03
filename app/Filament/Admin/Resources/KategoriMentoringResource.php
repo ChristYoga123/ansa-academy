@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Admin\Resources\KategoriMentoringResource\Pages;
 use App\Filament\Admin\Resources\KategoriMentoringResource\RelationManagers;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 
 class KategoriMentoringResource extends Resource
 {
@@ -30,6 +32,13 @@ class KategoriMentoringResource extends Resource
                 Grid::make()
                     ->columns(1)
                     ->schema([
+                        SpatieMediaLibraryFileUpload::make('kategori-mentoring-thumbnail')
+                            ->collection('kategori-mentoring-thumbnail')
+                            ->maxSize(1024)
+                            ->maxFiles(1)
+                            ->image()
+                            ->required()
+                            ->label('Thumbnail Kategori Mentoring'),
                         TextInput::make('nama')
                             ->label('Nama Kategori')
                             ->unique(ignoreRecord: true)
@@ -42,6 +51,9 @@ class KategoriMentoringResource extends Resource
     {
         return $table
             ->columns([
+                SpatieMediaLibraryImageColumn::make('kategori-mentoring-thumbnail')
+                    ->label('Thumbnail Kategori Mentoring')
+                    ->collection('kategori-mentoring-thumbnail'),
                 TextColumn::make('nama')
                     ->label('Nama Kategori')
                     ->searchable(),

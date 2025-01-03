@@ -35,6 +35,13 @@ class MentoringResource extends Resource
                     ->required()
                     ->relationship('kategori', 'nama')
                     ->createOptionForm([
+                        SpatieMediaLibraryFileUpload::make('kategori-mentoring-thumbnail')
+                            ->collection('kategori-mentoring-thumbnail')
+                            ->maxSize(1024)
+                            ->maxFiles(1)
+                            ->image()
+                            ->required()
+                            ->label('Thumbnail Kategori Mentoring'),
                         Forms\Components\TextInput::make('nama')
                             ->required()
                             ->maxLength(191),
