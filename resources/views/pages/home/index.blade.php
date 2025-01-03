@@ -231,7 +231,7 @@
 
 
     <!-- Courses Start -->
-    <div class="container-xxl py-5">
+    <div class="container-xxl py-5" id="popular-mentoring">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Mentoring</h6>
@@ -282,7 +282,7 @@
 
 
     <!-- Team Start -->
-    <div class="container-xxl py-5">
+    {{-- <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Mentor</h6>
@@ -320,11 +320,48 @@
                 @endforelse
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Team End -->
 
+    {{-- Video Start --}}
+    <section>
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <iframe width="200" height="600" src="https://www.youtube.com/embed/_ow5Yp9RWhM?si=0KfuIFdki5b4hdP7"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-9 col-xl-7">
+                    <div class="">
+                        <div class="p-5">
+                            <figure class="text-center mb-0">
+                                <blockquote class="blockquote">
+                                    <p class="pb-3 text-center">
+                                        <i class="fas fa-quote-left fa-xs text-primary"></i>
+                                        <span class="lead font-italic" style="font-style: italic">Lorem ipsum dolor sit
+                                            amet, consectetur adipisicing
+                                            elit. Explicabo, repudiandae.</span>
+                                        <i class="fas fa-quote-right fa-xs text-primary"></i>
+                                    </p>
+                                </blockquote>
+                                <figcaption class="blockquote-footer mb-0 text-center">
+                                    CEO of ANSA Academy
+                                </figcaption>
+                                <a href="" class="btn btn-primary mt-5">Yuk Daftar</a>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{-- Video End --}}
+
     <!-- Testimonial Start -->
-    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container-xxl pb-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="text-center">
                 <h6 class="section-title bg-white text-center text-primary px-3">Testimoni</h6>
@@ -351,4 +388,58 @@
         </div>
     </div>
     <!-- Testimonial End -->
+
+    {{-- FAQ Start --}}
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="text-center">
+                <h6 class="section-title bg-white text-center text-primary px-3">Tanya ANSA</h6>
+                <h1 class="mb-5">FAQ</h1>
+            </div>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Accordion Item #1
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">Content for Section 1 goes here.</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            Accordion Item #2
+                        </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            Content for Section 2 goes here.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseThree" aria-expanded="false"
+                            aria-controls="flush-collapseThree">
+                            Accordion Item #3
+                        </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            Content for Section 3 goes here.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- FAQ END --}}
 @endsection
