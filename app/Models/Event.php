@@ -27,7 +27,7 @@ class Event extends Model implements HasMedia
 
     public function mentors()
     {
-        return $this->hasMany(EventMentor::class);
+        return $this->belongsToMany(User::class, 'event_mentors', 'event_id', 'mentor_id')->withPivot('id');
     }
 
     public function registerMediaCollections(): void
