@@ -15,7 +15,7 @@ class Event extends Model implements HasMedia
 
     public function setJudulAttribute($value)
     {
-        $this->attributes['judul'] = $value;
+        $this->attributes['judul'] = ucwords($value);
         $this->attributes['slug'] = Str::slug($value);
     }
 

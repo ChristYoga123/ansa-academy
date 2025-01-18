@@ -13,6 +13,7 @@ use Filament\Navigation\NavigationItem;
 use Filament\Navigation\NavigationGroup;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Navigation\NavigationBuilder;
+use App\Filament\Resources\ArtikelResource;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -97,6 +98,7 @@ class AppPanelProvider extends PanelProvider
                     NavigationGroup::make('')
                         ->items([
                             ...Dashboard::getNavigationItems(),
+                            ...ArtikelResource::getNavigationItems(),
                             // ...ArtikelResource::getNavigationItems(),
                             // ...ProdukDigitalResource::getNavigationItems(),
                             // ...LombaResource::getNavigationItems(),
