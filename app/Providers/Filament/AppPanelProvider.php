@@ -19,6 +19,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Navigation\NavigationBuilder;
 use App\Filament\Resources\ArtikelResource;
 use App\Filament\Resources\LokerMentorResource;
+use App\Filament\Resources\ProgramJasaResource;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use App\Filament\Resources\ProdukDigitalResource;
@@ -123,6 +124,7 @@ class AppPanelProvider extends PanelProvider
                         ->items([
                             ...MenteeResource::getNavigationItems(),
                             ...MentorResource::getNavigationItems(),
+                            ...ProgramJasaResource::getNavigationItems(),
                             // ...MentorResource::getNavigationItems(),
                             // ...MenteeResource::getNavigationItems(),
                             // ...KategoriMentoringResource::getNavigationItems(),
