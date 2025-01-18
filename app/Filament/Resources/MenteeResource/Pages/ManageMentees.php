@@ -5,6 +5,7 @@ namespace App\Filament\Resources\MenteeResource\Pages;
 use App\Filament\Resources\MenteeResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
+use Illuminate\Contracts\Support\Htmlable;
 
 class ManageMentees extends ManageRecords
 {
@@ -15,5 +16,10 @@ class ManageMentees extends ManageRecords
         return [
             Actions\CreateAction::make(),
         ];
+    }
+    
+    public function getTitle(): string|Htmlable
+    {
+        return 'Mentee';
     }
 }

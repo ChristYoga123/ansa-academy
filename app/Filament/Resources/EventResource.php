@@ -37,7 +37,8 @@ class EventResource extends Resource
                     ->required()
                     ->image()
                     ->maxFiles(1)
-                    ->maxSize(1024),  
+                    ->maxSize(1024)
+                    ->collection('event-thumbnail'),  
                 Forms\Components\RichEditor::make('deskripsi')
                     ->required()
                     ->columnSpanFull(),
