@@ -38,7 +38,13 @@ class EventResource extends Resource
                     ->image()
                     ->maxFiles(1)
                     ->maxSize(1024)
-                    ->collection('event-thumbnail'),  
+                    ->collection('event-thumbnail'), 
+                Forms\Components\Select::make('mentors')
+                    ->relationship('mentors', 'name', fn(Builder $query) => $query->whereHas('roles', fn($query) => $query->where('name', 'mentor')))
+                    ->required()
+                    ->multiple()
+                    ->searchable()
+                    ->preload(),
                 Forms\Components\RichEditor::make('deskripsi')
                     ->required()
                     ->columnSpanFull(),
