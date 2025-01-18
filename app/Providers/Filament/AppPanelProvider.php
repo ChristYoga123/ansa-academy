@@ -11,6 +11,7 @@ use Filament\Navigation\MenuItem;
 use Filament\Support\Colors\Color;
 use Filament\Navigation\NavigationItem;
 use Filament\Navigation\NavigationGroup;
+use App\Filament\Resources\LombaResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Navigation\NavigationBuilder;
 use App\Filament\Resources\ArtikelResource;
@@ -99,6 +100,7 @@ class AppPanelProvider extends PanelProvider
                         ->items([
                             ...Dashboard::getNavigationItems(),
                             ...ArtikelResource::getNavigationItems(),
+                            ...LombaResource::getNavigationItems(),
                             // ...ArtikelResource::getNavigationItems(),
                             // ...ProdukDigitalResource::getNavigationItems(),
                             // ...LombaResource::getNavigationItems(),
