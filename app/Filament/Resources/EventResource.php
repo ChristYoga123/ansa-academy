@@ -128,6 +128,8 @@ class EventResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('judul')
                     ->searchable(),
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('thumbnail')
+                    ->collection('event-thumbnail'),
                 Tables\Columns\TextColumn::make('jenis')
                     ->sortable()
                     ->getStateUsing(fn(Event $event) => $event->jenis === 'online' ? 'Online' : 'Offline')

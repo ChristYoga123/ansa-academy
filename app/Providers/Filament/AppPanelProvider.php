@@ -21,6 +21,7 @@ use App\Filament\Resources\ArtikelResource;
 use App\Filament\Resources\LokerMentorResource;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
+use App\Filament\Resources\ProdukDigitalResource;
 use Filament\Http\Middleware\AuthenticateSession;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use FilipFonal\FilamentLogManager\FilamentLogManager;
@@ -105,6 +106,7 @@ class AppPanelProvider extends PanelProvider
                             ...Dashboard::getNavigationItems(),
                             ...ArtikelResource::getNavigationItems(),
                             ...LombaResource::getNavigationItems(),
+                            ...ProdukDigitalResource::getNavigationItems(),
                             ...EventResource::getNavigationItems(),
                             // ...ArtikelResource::getNavigationItems(),
                             // ...ProdukDigitalResource::getNavigationItems(),
