@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\ArtikelResource\Pages;
+namespace App\Filament\Resources\EventResource\Pages;
 
-use App\Filament\Resources\ArtikelResource;
+use App\Filament\Resources\EventResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
 use Illuminate\Contracts\Support\Htmlable;
 
-class ManageArtikels extends ManageRecords
+class ManageEvents extends ManageRecords
 {
-    protected static string $resource = ArtikelResource::class;
+    protected static string $resource = EventResource::class;
 
     protected function getHeaderActions(): array
     {
@@ -20,6 +20,6 @@ class ManageArtikels extends ManageRecords
 
     public function getTitle(): string|Htmlable
     {
-        return 'Artikel';
+        return 'Event';
     }
 }
