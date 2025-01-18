@@ -58,6 +58,11 @@ class User extends Authenticatable implements HasAvatar
         return $this->belongsToMany(Event::class, 'event_mentors', 'mentor_id', 'event_id')->withPivot('id');
     }
 
+    public function programs()
+    {
+        return $this->belongsToMany(Program::class, 'program_mentors', 'mentor_id', 'program_id')->withPivot('id');
+    }
+
     public function getFilamentAvatarUrl(): ?string
     {
         return $this->avatar_url ? Storage::url("$this->avatar_url") : null;
