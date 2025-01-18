@@ -13,6 +13,7 @@ use Filament\Navigation\NavigationItem;
 use Filament\Navigation\NavigationGroup;
 use App\Filament\Resources\EventResource;
 use App\Filament\Resources\LombaResource;
+use App\Filament\Resources\MenteeResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Navigation\NavigationBuilder;
 use App\Filament\Resources\ArtikelResource;
@@ -117,6 +118,7 @@ class AppPanelProvider extends PanelProvider
                         ]),
                     NavigationGroup::make('Master Data')
                         ->items([
+                            ...MenteeResource::getNavigationItems(),
                             // ...MentorResource::getNavigationItems(),
                             // ...MenteeResource::getNavigationItems(),
                             // ...KategoriMentoringResource::getNavigationItems(),

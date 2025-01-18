@@ -26,14 +26,5 @@ class AppServiceProvider extends ServiceProvider
         // Locale id
         Carbon::setLocale('id');
         Schema::defaultStringLength(191);
-        // Filament Shield
-        FilamentShield::configurePermissionIdentifierUsing(
-            fn($resource) => Str::of($resource)
-                ->afterLast('Resources\\')
-                ->before('Resource')
-                ->replace('\\', '')
-                ->snake()
-                ->replace('_', '::')
-        );
     }
 }
