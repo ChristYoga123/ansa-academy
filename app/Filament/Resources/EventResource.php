@@ -31,6 +31,7 @@ class EventResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('judul')
                     ->required()
+                    ->unique(ignoreRecord: true)
                     ->maxLength(191),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('thumbnail')
                     ->required()
@@ -137,7 +138,11 @@ class EventResource extends Resource
                     ->weight(FontWeight::Bold)
                     ->numeric()
                     ->sortable(),
-                
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    // get state using carbon cek waktu_pelaksanaan > now
+                    ->getStateUsing(fn(Event $event) => Carbon::parse($event->waktu_pelaksanaan)->isPast() ? 'Selesai' : 'Upcoming')
+                    ->color(fn(Event $event) => Carbon::parse($event->waktu_pelaksanaan)->isPast() ? 'danger' : 'success'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
