@@ -16,6 +16,7 @@ use App\Filament\Resources\LombaResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Navigation\NavigationBuilder;
 use App\Filament\Resources\ArtikelResource;
+use App\Filament\Resources\LokerMentorResource;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -112,7 +113,7 @@ class AppPanelProvider extends PanelProvider
                         ]),
                     NavigationGroup::make('Karir')
                         ->items([
-                            // ...LokerMentorResource::getNavigationItems(),
+                            ...LokerMentorResource::getNavigationItems(),
                         ]),
                     NavigationGroup::make('Master Data')
                         ->items([
