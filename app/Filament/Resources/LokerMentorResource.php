@@ -260,14 +260,25 @@ class LokerMentorResource extends Resource
                             ->schema([
                                 TextEntry::make('mahasiswa_berprestrasi'),
                                 TextEntry::make('alasan_mendaftar'),
-                                TextEntry::make('pencapaian'),
                                 TextEntry::make('drive_portofolio')
+                                    ->columnSpanFull()
                                     ->prefixAction(
-                                        Action::make('drive')
-                                            ->icon('heroicon-o-link')
-                                            ->url(fn(LokerMentor $record) => $record->drive_portofolio)
-                                            ->openUrlInNewTab()
-                                    ),
+                                    Action::make('drive')
+                                    ->icon('heroicon-o-link')
+                                    ->url(fn(LokerMentor $record) => $record->drive_portofolio)
+                                    ->openUrlInNewTab()
+                                ),
+                                TextEntry::make('pencapaian')
+                                    ->columnSpanFull()
+                                    ->formatStateUsing(function(LokerMentor $record){
+                                        $result = [];
+                                        foreach($record->pencapaian as $key => $value) {
+                                            $result[] = ($key + 1) . ' : ' . $value;
+                                        }
+                                        return nl2br(implode("\n", $result));
+                                        // atau bisa langsung: return implode("<br>", $result);
+                                    })
+                                    ->html(),  // Penting! Tambahkan ini agar HTML tag dirender
                             ]),
                         
                         Fieldset::make('Media Sosial')
