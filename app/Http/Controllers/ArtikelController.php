@@ -57,11 +57,11 @@ class ArtikelController extends Controller
 
     public function show($slug)
     {
-        $article = Artikel::with(['user', 'media'])->where('slug', $slug)->firstOrFail();
+        $article = Artikel::with('media')->where('slug', $slug)->firstOrFail();
         
-        // Get related articles
-        $relatedArticles = Artikel::where('id', '!=', $article->id)
-                                ->orderBy('created_at', 'desc')
+        // Get random related articles from same category
+        $relatedArticles = Artikel::where('id', '!=', $article->id) // Jika ada kategori
+                                ->inRandomOrder()
                                 ->limit(3)
                                 ->get();
 
