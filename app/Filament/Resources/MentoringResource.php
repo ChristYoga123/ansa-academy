@@ -47,12 +47,10 @@ class MentoringResource extends Resource
                     ->preload()
                     ->required(),
                 Forms\Components\Repeater::make('mentoringBidangs')
-                    ->label('Bidang Mentoring')
+                    ->label('Bidang Mentoring (Diisi jika ada)')
                     ->relationship('mentoringBidangs')
-                    ->required()
                     ->schema([
                         Forms\Components\TextInput::make('nama')
-                            ->required()
                             ->maxLength(191),
                     ]),
                 Forms\Components\RichEditor::make('deskripsi')

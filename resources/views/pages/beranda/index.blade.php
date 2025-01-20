@@ -468,7 +468,7 @@
                                                 <i class="fas fa-star"></i>
                                             @endfor
                                         </div>
-                                        <span class="review-count">({{ $mentoring->testimoni_count }} ulasan)</span>
+                                        <span class="review-count">({{ $mentoring->testimoni_count ?? 0 }} ulasan)</span>
                                     </div>
 
                                     <div class="mentoring-info">
@@ -479,8 +479,8 @@
                                         </div>
                                         <div class="info-item">
                                             <i class="fa fa-file-alt"></i>
-                                            <span class="count">{{ $mentoring->mentoring_pakets_count ?? 0 }}</span>
-                                            Paket
+                                            <span class="count">{{ $mentoring->mentoring_bidangs_count ?? 0 }}</span>
+                                            Bidang
                                             Tersedia
                                         </div>
                                         <div class="info-item">

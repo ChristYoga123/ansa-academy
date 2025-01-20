@@ -17,7 +17,7 @@ class BerandaController extends Controller
     {
         return view('pages.beranda.index', [
             'title' => $this->title,
-            'mentorings' => Mentoring::with('media')->withCount('mentors')->withCount('mentoringPakets')->withCount('mentoringMentees')->limit(3)->get(),
+            'mentorings' => Mentoring::with('media')->withCount('mentors')->withCount('mentoringBidangs')->withCount('mentoringMentees')->limit(3)->get(),
             'testimonies' => [],
             'faqs' => [],
             'iklans' => [],
