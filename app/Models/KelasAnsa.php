@@ -13,6 +13,12 @@ class KelasAnsa extends Model implements HasMedia
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'waktu_open_registrasi' => 'datetime',
+        'waktu_close_registrasi' => 'datetime',
+        'waktu_pelaksanaan' => 'datetime',
+    ];
+
     public function setJudulAttribute($value)
     {
         $this->attributes['judul'] = ucwords($value);

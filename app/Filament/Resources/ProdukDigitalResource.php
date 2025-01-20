@@ -57,11 +57,13 @@ class ProdukDigitalResource extends Resource
                     ->live()
                     ->visible(fn(Get $get) => $get('platform') === 'url'),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                    ->label('File Produk (PDF, DOCX, XLSX, PPTX, ZIP) Max 50MB')
                     ->required(fn(Get $get) => $get('platform') === 'file')
                     ->maxFiles(1)
                     ->maxSize(50000)
                     ->collection('produk-digital-file')
                     ->live()
+                    ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/zip'])
                     ->visible(fn(Get $get) => $get('platform') === 'file'),
             ]);
 

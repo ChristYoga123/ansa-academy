@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Event extends Model implements HasMedia
 {
-    use InteractsWithMedia;
+    use InteractsWithMedia, HasFactory;
 
     protected $guarded = ['id'];
 
