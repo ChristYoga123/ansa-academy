@@ -2,22 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
-use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class ProdukDigital extends Model implements HasMedia
+class ProofreadingMentee extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
     protected $guarded = ['id'];
-
-    public function setJudulAttribute($value)
-    {
-        $this->attributes['judul'] = ucwords($value);
-        $this->attributes['slug'] = Str::slug($value);
-    }
 
     public function transaksis()
     {
@@ -26,9 +19,9 @@ class ProdukDigital extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('produk-digital-thumbnail')
+        $this->addMediaCollection('proofreading-file')
             ->singleFile();
-        $this->addMediaCollection('produk-digital-file')
+        $this->addMediaCollection('proofreading-file-finished')
             ->singleFile();
     }
 }

@@ -60,9 +60,14 @@ class User extends Authenticatable implements HasAvatar, HasMedia
         return $this->belongsToMany(Event::class, 'event_mentors', 'mentor_id', 'event_id')->withPivot('id');
     }
 
-    public function programs()
+    public function mentorings()
     {
-        return $this->belongsToMany(Program::class, 'program_mentors', 'mentor_id', 'program_id')->withPivot('id');
+        return $this->belongsToMany(Mentoring::class, 'mentoring_mentors', 'mentor_id', 'mentoring_id')->withPivot('id');
+    }
+
+    public function kelasAnsas()
+    {
+        return $this->belongsToMany(KelasAnsa::class, 'kelas_ansa_mentors', 'mentor_id', 'kelas_ansa_id')->withPivot('id');
     }
 
     public function getFilamentAvatarUrl(): ?string

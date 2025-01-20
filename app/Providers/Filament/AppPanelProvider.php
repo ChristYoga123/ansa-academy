@@ -124,7 +124,7 @@ class AppPanelProvider extends PanelProvider
                         ->items([
                             ...MenteeResource::getNavigationItems(),
                             ...MentorResource::getNavigationItems(),
-                            ...ProgramJasaResource::getNavigationItems(),
+                            // ...ProgramJasaResource::getNavigationItems(),
                             // ...MentorResource::getNavigationItems(),
                             // ...MenteeResource::getNavigationItems(),
                             // ...KategoriMentoringResource::getNavigationItems(),

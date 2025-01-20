@@ -7,7 +7,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Event extends Model implements HasMedia
+class KelasAnsa extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
@@ -19,25 +19,19 @@ class Event extends Model implements HasMedia
         $this->attributes['slug'] = Str::slug($value);
     }
 
-    protected $casts = [
-        'waktu_open_registrasi' => 'datetime',
-        'waktu_close_registrasi' => 'datetime',
-        'waktu_pelaksanaan' => 'datetime',
-    ];
+    public function kelasAnsaPakets()
+    {
+        return $this->hasMany(KelasAnsaPaket::class);
+    }
 
     public function mentors()
     {
-        return $this->belongsToMany(User::class, 'event_mentors', 'event_id', 'mentor_id')->withPivot('id');
-    }
-
-    public function transaksis()
-    {
-        return $this->morphMany(Transaksi::class, 'transaksiable');
+        return $this->belongsToMany(User::class, 'kelas_ansa_mentors', 'kelas_ansa_id', 'mentor_id')->withPivot('id');
     }
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('event-thumbnail')
+        $this->addMediaCollection('kelas-ansa-thumbnail')
             ->singleFile();
     }
 }

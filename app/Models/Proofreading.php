@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Support\Str;
-use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class ProdukDigital extends Model implements HasMedia
+class Proofreading extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
@@ -19,16 +19,14 @@ class ProdukDigital extends Model implements HasMedia
         $this->attributes['slug'] = Str::slug($value);
     }
 
-    public function transaksis()
+    public function proofreadingPakets()
     {
-        return $this->morphMany(Transaksi::class, 'transaksiable');
+        return $this->hasMany(ProofreadingPaket::class);
     }
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('produk-digital-thumbnail')
-            ->singleFile();
-        $this->addMediaCollection('produk-digital-file')
+        $this->addMediaCollection('proofreading-thumbnail')
             ->singleFile();
     }
 }
