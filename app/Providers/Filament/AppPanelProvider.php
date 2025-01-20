@@ -18,6 +18,7 @@ use App\Filament\Resources\MentorResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Navigation\NavigationBuilder;
 use App\Filament\Resources\ArtikelResource;
+use App\Filament\Resources\KelasAnsaResource;
 use App\Filament\Resources\LokerMentorResource;
 use App\Filament\Resources\MentoringResource;
 use App\Filament\Resources\ProgramJasaResource;
@@ -118,6 +119,7 @@ class AppPanelProvider extends PanelProvider
                     NavigationGroup::make('Program')
                         ->items([
                             ...MentoringResource::getNavigationItems(),
+                            ...KelasAnsaResource::getNavigationItems(),
                         ]),
                     NavigationGroup::make('Master Data')
                         ->items([

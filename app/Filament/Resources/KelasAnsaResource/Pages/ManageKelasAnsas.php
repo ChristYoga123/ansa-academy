@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\MentoringResource\Pages;
+namespace App\Filament\Resources\KelasAnsaResource\Pages;
 
-use App\Filament\Resources\MentoringResource;
+use App\Filament\Resources\KelasAnsaResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
 use Illuminate\Contracts\Support\Htmlable;
 
-class ManageMentorings extends ManageRecords
+class ManageKelasAnsas extends ManageRecords
 {
-    protected static string $resource = MentoringResource::class;
+    protected static string $resource = KelasAnsaResource::class;
 
     protected function getHeaderActions(): array
     {
@@ -20,6 +20,6 @@ class ManageMentorings extends ManageRecords
 
     public function getTitle(): string|Htmlable
     {
-        return 'Mentoring';
+        return 'Kelas Ansa';
     }
 }
