@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\KelasAnsaResource\Pages;
-use App\Filament\Resources\KelasAnsaResource\RelationManagers;
-use App\Models\KelasAnsa;
+use App\Filament\Resources\ProofreadingResource\Pages;
+use App\Filament\Resources\ProofreadingResource\RelationManagers;
+use App\Models\Proofreading;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,71 +13,47 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class KelasAnsaResource extends Resource
+class ProofreadingResource extends Resource
 {
-    protected static ?string $model = KelasAnsa::class;
+    protected static ?string $model = Proofreading::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationLabel = 'Kelas Ansa';
+    protected static ?string $navigationLabel = 'Proofreading';
 
     public static function form(Form $form): Form
     {
-        $dataKelas = Forms\Components\Wizard\Step::make('dataKelas')
-            ->label('Data Kelas')
+        $dataProofreading = Forms\Components\Wizard\Step::make('Data Proofreading')
             ->schema([
                 Forms\Components\TextInput::make('judul')
-                    ->required()
                     ->unique(ignoreRecord: true)
+                    ->required()
                     ->maxLength(191),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('thumbnail')
                     ->required()
-                    ->maxFiles(1)
-                    ->maxSize(1024)
                     ->image()
-                    ->collection('kelas-ansa-thumbnail'),
-                Forms\Components\Select::make('mentors')
-                    ->relationship('mentors', 'name', fn(Builder $query) => $query->whereHas('roles', fn($query) => $query->where('name', 'mentor')))
-                    ->required()
-                    ->multiple()
-                    ->preload()
-                    ->searchable(),
-                Forms\Components\TextInput::make('link_meet')
-                    ->required()
-                    ->url(),
+                    ->maxSize(1024)
+                    ->maxFiles(1)
+                    ->collection('proofreading-thumbnail'),
                 Forms\Components\RichEditor::make('deskripsi')
                     ->required()
                     ->columnSpanFull(),
-                ]);
-
-        $dataJadwal = Forms\Components\Wizard\Step::make('dataJadwal')
-            ->label('Data Jadwal')
-            ->schema([
-                Forms\Components\Grid::make()
-                    ->columns(2)
-                    ->schema([
-                        Forms\Components\DateTimePicker::make('waktu_open_registrasi')
-                            ->required(),
-                        Forms\Components\DateTimePicker::make('waktu_close_registrasi')
-                            ->required(),
-                    ]),
-                Forms\Components\DateTimePicker::make('waktu_pelaksanaan')
-                    ->required(),
             ]);
 
-        $dataPaket = Forms\Components\Wizard\Step::make('pricingKelas')
-            ->label('Pricing Kelas')
+        $dataPricing = Forms\Components\Wizard\Step::make('Data Pricing')
             ->schema([
-                Forms\Components\Repeater::make('pricing')
-                    ->relationship('kelasAnsaPakets')
+                Forms\Components\Repeater::make('proofreadingPakets')
+                    ->relationship('proofreadingPakets')
                     ->schema([
-                        Forms\Components\TextInput::make('label')
-                            ->required(),
+                        Forms\Components\Select::make('jenis')
+                            ->required()
+                            ->options([
+                                'Reguler' => 'Reguler',
+                                'Premium' => 'Premium',
+                            ]),
                         Forms\Components\TextInput::make('harga')
                             ->required()
                             ->numeric()
-                            ->minValue(1)
-                            ->prefix('Rp')
-                            ->suffix(',00'),
+                            ->minValue(1),
                     ])
             ]);
         return $form
@@ -87,13 +63,11 @@ class KelasAnsaResource extends Resource
                     ->schema([
                         Forms\Components\Wizard::make()
                             ->steps([
-                                $dataKelas,
-                                $dataJadwal,
-                                $dataPaket,
+                                $dataProofreading,
+                                $dataPricing,
                             ])
                             ->skippable(fn(string $operation) => $operation === 'edit'),
-                ]),
-        
+                    ])
             ]);
     }
 
@@ -104,7 +78,8 @@ class KelasAnsaResource extends Resource
                 Tables\Columns\TextColumn::make('judul')
                     ->searchable(),
                 Tables\Columns\SpatieMediaLibraryImageColumn::make('thumbnail')
-                    ->collection('kelas-ansa-thumbnail'),
+                    ->label('Thumbnail')
+                    ->collection('proofreading-thumbnail'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -131,7 +106,7 @@ class KelasAnsaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageKelasAnsas::route('/'),
+            'index' => Pages\ManageProofreadings::route('/'),
         ];
     }
 }

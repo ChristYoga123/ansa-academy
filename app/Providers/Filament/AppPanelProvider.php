@@ -19,10 +19,11 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Navigation\NavigationBuilder;
 use App\Filament\Resources\ArtikelResource;
 use App\Filament\Resources\KelasAnsaResource;
-use App\Filament\Resources\LokerMentorResource;
 use App\Filament\Resources\MentoringResource;
+use App\Filament\Resources\LokerMentorResource;
 use App\Filament\Resources\ProgramJasaResource;
 use Illuminate\Session\Middleware\StartSession;
+use App\Filament\Resources\ProofreadingResource;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use App\Filament\Resources\ProdukDigitalResource;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -120,6 +121,7 @@ class AppPanelProvider extends PanelProvider
                         ->items([
                             ...MentoringResource::getNavigationItems(),
                             ...KelasAnsaResource::getNavigationItems(),
+                            ...ProofreadingResource::getNavigationItems(),
                         ]),
                     NavigationGroup::make('Master Data')
                         ->items([

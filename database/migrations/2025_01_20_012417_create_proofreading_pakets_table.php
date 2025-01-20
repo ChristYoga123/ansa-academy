@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('proofreading_pakets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('proofreading_id')->constrained()->cascadeOnDelete();
-            $table->enum('jenis', ['Reguuler', 'Premium']);
+            $table->enum('jenis', ['Reguler', 'Premium']);
             $table->unsignedBigInteger('harga');
             $table->timestamps();
         });
