@@ -194,16 +194,15 @@
                 @endif
             @endforeach
         </div>
-        {{-- @auth()
-            <a href="{{ Auth::user()->hasRole('super_admin') ? route('filament.admin.pages.dashboard') : (Auth::user()->hasRole('mentor') ? route('filament.mentor.pages.dashboard') : route('filament.mentee.pages.dashboard')) }}"
-                class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+        @auth()
+            <a href="{{ route('filament.app.pages.dashboard') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
                 Hi, {{ Auth::user()->name }}<i class="fa fa-arrow-right ms-3"></i>
             </a>
         @else
-            <a href="{{ route('filament.mentee.auth.login') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+            <a href="{{ route('filament.app.auth.login') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
                 Masuk<i class="fa fa-arrow-right ms-3"></i>
             </a>
-        @endauth --}}
+        @endauth
     </div>
 </nav>
 

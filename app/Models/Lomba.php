@@ -25,6 +25,12 @@ class Lomba extends Model implements HasMedia
         'waktu_close_registrasi' => 'datetime',
     ];
 
+    public function getIsOpenAttribute()
+    {
+        $now = now();
+        return $this->waktu_open_registrasi <= $now && $this->waktu_close_registrasi >= $now;
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('lomba-thumbnail')

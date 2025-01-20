@@ -72,12 +72,6 @@ class LombaResource extends Resource
                     ->collection('lomba-thumbnail'),
                 Tables\Columns\TextColumn::make('penyelenggara')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('waktu_open_registrasi')
-                    ->getStateUsing(fn(Lomba $lomba) => Carbon::parse($lomba->waktu_open_registrasi)->format('d F Y H:i'))
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('waktu_close_registrasi')
-                    ->getStateUsing(fn(Lomba $lomba) => Carbon::parse($lomba->waktu_close_registrasi)->format('d F Y H:i'))
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
                     ->getStateUsing(fn(Lomba $lomba) => Carbon::now()->between($lomba->waktu_open_registrasi, $lomba->waktu_close_registrasi) ? 'Terbuka' : 'Tutup')

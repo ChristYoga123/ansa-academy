@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transaksis', function (Blueprint $table) {
-            $table->id('order_id');
+            $table->id();
+            $table->string('order_id')->unique();
             $table->foreignId('mentee_id')->constrained('users')->cascadeOnDelete();
             $table->string('transaksiable_type');
             $table->unsignedBigInteger('transaksiable_id');

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Transaksi;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Event extends Model implements HasMedia
 {
@@ -34,6 +35,15 @@ class Event extends Model implements HasMedia
     public function transaksis()
     {
         return $this->morphMany(Transaksi::class, 'transaksiable');
+    }
+
+    public function checkUserEnrolled()
+    {
+        return Transaksi::where('transaksiable_id', $this->id)
+            ->where('transaksiable_type', Event::class)
+            ->where('mentee_id', auth()->id())
+            ->where('status', 'Sukses')
+            ->exists();
     }
 
     public function registerMediaCollections(): void
