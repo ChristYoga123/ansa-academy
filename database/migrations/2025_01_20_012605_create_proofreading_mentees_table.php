@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('mentee_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('proofreading_paket_id')->constrained()->cascadeOnDelete();
-            $table->enum('status', ['Menunggu', 'Selesai']);
+            $table->enum('status', ['Menunggu', 'Selesai', 'Ditolak'])->default('Menunggu');
             $table->timestamps();
         });
     }

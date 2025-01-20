@@ -19,6 +19,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Navigation\NavigationBuilder;
 use App\Filament\Resources\ArtikelResource;
 use App\Filament\Resources\LokerMentorResource;
+use App\Filament\Resources\MentoringResource;
 use App\Filament\Resources\ProgramJasaResource;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -109,30 +110,19 @@ class AppPanelProvider extends PanelProvider
                             ...LombaResource::getNavigationItems(),
                             ...ProdukDigitalResource::getNavigationItems(),
                             ...EventResource::getNavigationItems(),
-                            // ...ArtikelResource::getNavigationItems(),
-                            // ...ProdukDigitalResource::getNavigationItems(),
-                            // ...LombaResource::getNavigationItems(),
-                            // ...EventResource::getNavigationItems(),
-                            // ...MentoringResource::getNavigationItems(),
-                            // ...TransaksiResource::getNavigationItems(),
                         ]),
                     NavigationGroup::make('Karir')
                         ->items([
                             ...LokerMentorResource::getNavigationItems(),
                         ]),
+                    NavigationGroup::make('Program')
+                        ->items([
+                            ...MentoringResource::getNavigationItems(),
+                        ]),
                     NavigationGroup::make('Master Data')
                         ->items([
                             ...MenteeResource::getNavigationItems(),
-                            ...MentorResource::getNavigationItems(),
-                            // ...ProgramJasaResource::getNavigationItems(),
-                            // ...MentorResource::getNavigationItems(),
-                            // ...MenteeResource::getNavigationItems(),
-                            // ...KategoriMentoringResource::getNavigationItems(),
-                            // ...FAQResource::getNavigationItems(),
-                            // ...IklanResource::getNavigationItems(),
-                            // ...PageResource::getNavigationItems(),
-                            // ...CategoryResource::getNavigationItems(),
-                            // ...HomePageSettings::getNavigationItems(),
+                            ...MentorResource::getNavigationItems()
                         ]),
                     NavigationGroup::make('Settings')
                         ->items([

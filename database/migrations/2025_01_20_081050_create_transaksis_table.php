@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('transaksiable_type');
             $table->unsignedBigInteger('transaksiable_id');
             $table->unsignedBigInteger('total_harga');
-            $table->enum('status', ['Menunggu', 'Sukses', 'Dibatalkan']);
+            $table->enum('status', ['Menunggu', 'Sukses', 'Dibatalkan'])->default('Menunggu');
             $table->timestamps();
         });
     }
