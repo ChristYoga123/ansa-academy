@@ -24,15 +24,15 @@ return [
     ],
     [
         'menu' => 'Event',
-        'url' => '/event',
+        'url' => '/event*',
     ],
     [
         'menu' => 'Lomba',
-        'url' => '/lomba',
+        'url' => '/lomba*',
     ],
     [
         'menu' => 'Blog',
-        'url' => '/blog',
+        'url' => '/blog*',
     ]
 ]
 ?>

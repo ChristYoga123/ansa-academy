@@ -60,7 +60,7 @@ class ArtikelController extends Controller
         $article = Artikel::with('media')->where('slug', $slug)->firstOrFail();
         
         // Get random related articles from same category
-        $relatedArticles = Artikel::where('id', '!=', $article->id) // Jika ada kategori
+        $relatedArticles = Artikel::with('media')->where('id', '!=', $article->id)
                                 ->inRandomOrder()
                                 ->limit(3)
                                 ->get();
