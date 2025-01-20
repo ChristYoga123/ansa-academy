@@ -29,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
         // set default string length
         Schema::defaultStringLength(191);
         // menu config
-        // View::composer();
+        View::composer('components.navbar', function ($view)
+        {
+            $view->with('menus', config('menu'));
+        });
     }
 }

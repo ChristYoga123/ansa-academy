@@ -34,6 +34,11 @@ class Mentoring extends Model implements HasMedia
         return $this->belongsToMany(User::class, 'mentoring_mentors', 'mentoring_id', 'mentor_id')->withPivot('id');
     }
 
+    public function mentoringMentees()
+    {
+        return $this->hasManyThrough(MentoringMentee::class, MentoringPaket::class, 'mentoring_id', 'mentoring_paket_id', 'id', 'id');
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('mentoring-thumbnail')
